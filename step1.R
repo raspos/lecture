@@ -94,4 +94,42 @@ ggplot(prize_2018 %>%
 # 특정연도에 늘어난 이유(예 : 99년 “공무원의 명예퇴직이나 교원들의 정년 인하로 퇴직자가 늘어 갑작스럽게 국민훈장과 근정훈장에 대한 수요가 증가했기 때문”) (훈장의 세부종류별 데이터 요청)    
 
 #### 5. 실제 데이터로 실습하기 ####
+# 국토부 보도자료(http://www.molit.go.kr/USR/NEWS/m_71/dtl.jsp?lcmspage=1&id=95082344)
+
+# 1. read_html()와 html_table() 함수를 이용해 training.html의 데이터를 가져와 {df_country}에 담아보세요.   
+df_country <- read_html('training.html')
+
+df_country <- df_country %>% 
+  html_table(fill = T)
+
+# 2. {df_country}의 7번째 데이터프레임을 {df_country}에 담아보세요. 
+df_country <- df_country[[7]]
+
+# 3. {df_country}의 열 이름을 {df_country}의 첫행으로 바꿔보세요.
+# 3-1. 1~3번째 '행'을 slice() 함수를 이용해 지워보세요.
+colnames(df_country) <- df_country[1,]
+df_country <- df_country %>% 
+  slice(-1, -2, -3)
+ 
+# 4. {df_country}의 자료구조를 파악해 보세요.
+glimpse(df_country)
+
+# 5. gather() 함수를 이용해 {df_country}의 숫자형태(아직은 문자형인) 데이터(2열부터 9열까지)를 모아보세요. 변수는 cate, num입니다.
+df_country <- df_country %>% 
+  gather(cate, num, 2:9)
+
+# 6. {df_country}의 변수 num(df_country$num)에서 str_remove_all() 함수를 이용해 ','를 지운 뒤 문자형을 숫자형으로 변환하는 함수 as.numeric()을 써서 숫자형 데이터로 변환해 보세요.
+df_country$num <- df_country$num %>% 
+  str_remove_all("\\,") %>% 
+  as.numeric()
+
+# 7. spread() 함수를 이용해  {df_country}의 숫자형 데이터를 펼쳐보세요. 
+df_country <- df_country %>% 
+  spread(cate, num)
+
+# 8. mutate() 함수를 이용해 17개 지자체 토지 가운데,
+# 8-1. 하천이 차지하는 비율을 계산해 변수 '하천_비율'에 담아보세요.
+# 8-2. 전, 답, 대 면적의 합을 계산해 변수 '농지'에 담아보세요.
+df_country <- df_country %>% 
+  mutate(하천_비율 = (`하천(㎢)` / `계(㎢)`) * 100, 농지 = `전(㎢)` + `답(㎢)` + `대(㎢)`)
 

@@ -69,15 +69,15 @@ colnames(data)
 
 df_manager <- readr::read_csv('https://docs.google.com/spreadsheets/d/e/2PACX-1vTMk1a3Ob7Cdu99TDmf1kULHXgj79XDP-__vDGFaAoApKlS0kyyhgNZD2-lNk6td73Zwb6zTZoq0BBt/pub?gid=831508092&single=true&output=csv')
 
-#1. 데이터프레임(df_manager)에서 감독 연봉 데이터를 변수 salary에 담아보세요. 
+#1. 데이터프레임{df_manager}에서 감독 연봉 데이터를 변수 salary에 담아보세요. 
 salary <- df_manager$연봉
-#2. df_manager의 자료구조를 파악해 보세요.
+#2. {df_manager}의 자료구조를 파악해 보세요.
 dplyr::glimpse(df_manager)
 str(df_manager)
-#3. df_manager에서 변수 순위를 문자형으로 바꿔보세요.  
+#3. {df_manager}에서 변수 순위를 문자형으로 바꿔보세요.  
 df_manager$순위 <- as.character(df_manager$순위)
 dplyr::glimpse(df_manager)
 #4. 트레이 힐만 감독의 연봉과 김한수 감독의 연봉의 차이를 계산해 보세요.
 df_manager[1,3] - df_manager[10,3]
-#5. df_manager의 열 이름(변수명)을 영어로 바꿔보세요. ex) 순위 = rank, 이름 = name, 연봉 = salary, 소속팀 = team
+#5. {df_manager}의 열 이름(변수명)을 영어로 바꿔보세요. ex) 순위 = rank, 이름 = name, 연봉 = salary, 소속팀 = team
 colnames(df_manager) <- c("rank", "name", "salary", "team")

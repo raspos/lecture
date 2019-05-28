@@ -386,7 +386,7 @@ $(document).ready(function () {
 <h4>package = 함수를 담아놓음 묶음, 설치할 때 install.pakages(“패키지명”), 불러올 때 library(패키지명), 오른쪽 아래 창(Packages)에서 설치 여부 확인</h4>
 <pre class="r"><code>#install.packages(&quot;tidyverse&quot;)  
 library(tidyverse) </code></pre>
-<pre><code>## ─ Attaching packages ────────────────────────────────────────────────────────────── tidyverse 1.2.1 ─</code></pre>
+<pre><code>## ─ Attaching packages ─────────────────────────────────────────────────────────────── tidyverse 1.2.1 ─</code></pre>
 <pre><code>## ✔ ggplot2 3.1.1     ✔ purrr   0.3.2
 ## ✔ tibble  2.1.1     ✔ dplyr   0.8.1
 ## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
@@ -500,11 +500,14 @@ colnames(prize_2018) &lt;- c(&quot;연도&quot;, &quot;계&quot;, &quot;훈포�
 </div>
 <div id="-" class="section level1">
 <h1>4. 데이터 분석하기</h1>
-<div id="mutate------------" class="section level2">
-<h2>4-1. mutate(데이터프레임에 조건을 만족하는 새로운 열(변수)를 만들거나, 기존의 열을 조건에 맞게 변경할 때 사용)</h2>
+<div id="mutate" class="section level2">
+<h2>4-1. mutate</h2>
+<div id="------------" class="section level4">
+<h4>*데이터프레임에 조건을 만족하는 새로운 열(변수)를 만들거나, 기존의 열을 조건에 맞게 변경할 때 사용</h4>
 <pre class="r"><code>prize_2018 &lt;- prize_2018 %&gt;%   
   mutate(훈포장_계 = 훈포장_훈장 + 훈포장_포장,  
          표창_계 = 표창_대표 + 표창_국표)  </code></pre>
+</div>
 </div>
 <div id="gather-spread-separate" class="section level2">
 <h2>4-2. gather(모으고), spread(펼치고), separate(분리하고)</h2>
@@ -540,6 +543,45 @@ ggplot(prize_2018 %&gt;%
 <div id="---99--------------------" class="section level4">
 <h4>3. 특정연도에 늘어난 이유(예 : 99년 “공무원의 명예퇴직이나 교원들의 정년 인하로 퇴직자가 늘어 갑작스럽게 국민훈장과 근정훈장에 대한 수요가 증가했기 때문”) -&gt; 훈장의 세부종류별 데이터 요청</h4>
 </div>
+</div>
+</div>
+<div id="--" class="section level1">
+<h1>5. 실제 데이터로 실습하기</h1>
+<div id="-httpwww.molit.go.krusrnewsm_71dtl.jsplcmspage1id95082344" class="section level4">
+<h4>국토부 보도자료(<a href="http://www.molit.go.kr/USR/NEWS/m_71/dtl.jsp?lcmspage=1&amp;id=95082344" class="uri">http://www.molit.go.kr/USR/NEWS/m_71/dtl.jsp?lcmspage=1&amp;id=95082344</a>)</h4>
+</div>
+<div id="read_html-html_table---training.html---df_country-." class="section level4">
+<h4>1. read_html()와 html_table() 함수를 이용해 training.html의 데이터를 가져와 {df_country}에 담아보세요.</h4>
+</div>
+<div id="df_country-7--df_country-." class="section level4">
+<h4>2. {df_country}의 7번째 데이터프레임을 {df_country}에 담아보세요.</h4>
+</div>
+<div id="df_country---df_country--." class="section level4">
+<h4>3. {df_country}의 열 이름을 {df_country}의 첫행으로 바꿔보세요.</h4>
+</div>
+<div id="--slice---." class="section level4">
+<h4>3-1. 1~3번째 ’행’을 slice() 함수를 이용해 지워보세요.</h4>
+</div>
+<div id="df_country---." class="section level4">
+<h4>4. {df_country}의 자료구조를 파악해 보세요.</h4>
+</div>
+<div id="gather---df_country---2-9-.--cate-num." class="section level4">
+<h4>5. gather() 함수를 이용해 {df_country}의 숫자형태(아직은 문자형인) 데이터(2열부터 9열까지)를 모아보세요. 변수는 cate, num입니다.</h4>
+</div>
+<div id="df_country--numdf_countrynum-str_remove_all----------as.numeric-----." class="section level4">
+<h4>6. {df_country}의 변수 num(df_country$num)에서 str_remove_all() 함수를 이용해 ’,’를 지운 뒤 문자형을 숫자형으로 변환하는 함수 as.numeric()을 써서 숫자형 데이터로 변환해 보세요.</h4>
+</div>
+<div id="spread---df_country---." class="section level4">
+<h4>7. spread() 함수를 이용해 {df_country}의 숫자형 데이터를 펼쳐보세요.</h4>
+</div>
+<div id="mutate---17---" class="section level4">
+<h4>8. mutate() 함수를 이용해 17개 지자체 토지 가운데,</h4>
+</div>
+<div id="-----_-." class="section level4">
+<h4>8-1. 하천이 차지하는 비율을 계산해 변수 ’하천_비율’에 담아보세요.</h4>
+</div>
+<div id="--------." class="section level4">
+<h4>8-2. 전, 답, 대 면적의 합을 계산해 변수 ’농지’에 담아보세요.</h4>
 </div>
 </div>
 
