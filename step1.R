@@ -1,10 +1,12 @@
+#### step1 ####
 
-#### library 설치 ####
-install.packages("tidyverse")
-install.packages("rvest")
-library(tidyverse)
+#### package 설치 ####
+### package = 함수를 담아놓음 묶음, 설치할 때 install.pakages("패키지명"), 불러올 때 library(패키지명), 오른쪽 아래 창(Packages)에서 설치 여부 확인
+
+install.packages("tidyverse") # tidyverse는 데이터를 불러오고, 정리하고, 변형하는 함수가 내장된 패키지. 시각화, 모델링 함수도 적용.
+install.packages("rvest") # 웹에 있는 html 문서를 읽어올 때 사용하는 함수 묶음.  
+library(tidyverse) 
 library(rvest) 
-######################
 
 #### 분석 데이터1 = "연도별 정부포상 현황", 행정안전부 자료(흔히 보도자료로 나올 수 있을 만한...) ####
 # 변수가 무엇인지 탐색 (연도, 계, 훈포장 소계, 훈포장 훈장, 훈포장 포장, 표창 소계, 표창 대표, 표창 국표) # 8개
@@ -20,6 +22,11 @@ prize_2018 <- read_html('prize_2018.html')
 
 prize_2018 <- prize_2018 %>% 
   html_table(fill = T) 
+
+prize_2018 <- read_html('prize_2018.html')
+
+prize_2018 <- html_table(prize_2018, fill = T)
+
 prize_2018 <- prize_2018[[1]]
 
 #### 3. 데이터 전처리 ####
@@ -85,4 +92,6 @@ ggplot(prize_2018 %>%
 # 변수를 바꿔 넣어가면서 의미를 분석, filter(특정 요건에 맞춰 데이터 추출하는 함수)
 # 정권 별로 그룹화해서 특정 정권에 포상을 남발한 원인 분석(월 단위 데이터 요청) 
 # 특정연도에 늘어난 이유(예 : 99년 “공무원의 명예퇴직이나 교원들의 정년 인하로 퇴직자가 늘어 갑작스럽게 국민훈장과 근정훈장에 대한 수요가 증가했기 때문”) (훈장의 세부종류별 데이터 요청)    
+
+#### 5. 실제 데이터로 실습하기 ####
 

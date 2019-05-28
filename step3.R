@@ -1,7 +1,9 @@
-#### library 설치 ####
+#### step3 ####
+
+#### package 설치 ####
+### package = 함수를 담아놓음 묶음, 설치할 때 install.pakages("패키지명"), 불러올 때 library(패키지명), 오른쪽 아래 창(Packages)에서 설치 여부 확인
 library(tidyverse)
 library(rvest)
-######################
 
 #### 분석 데이터3 = "고위공직자 재산공개 분석" 
  

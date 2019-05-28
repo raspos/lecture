@@ -1,8 +1,10 @@
 
-#### library 설치 ####
+#### step2-1 ####
+
+#### package 설치 ####
+### package = 함수를 담아놓음 묶음, 설치할 때 install.pakages("패키지명"), 불러올 때 library(패키지명), 오른쪽 아래 창(Packages)에서 설치 여부 확인
 library(tidyverse)
 library(rvest)
-######################
 
 #### 분석 데이터2-1 = "리얼미터_지지율 분석", (http://www.realmeter.net/category/pdf/)
 # 1. 무엇을 분석할 것인가. = 탐색 과정, 정당지지율 일간 집계 
