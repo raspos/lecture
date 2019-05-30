@@ -16,14 +16,14 @@ library(tidyverse)
 #install.packages("rvest")  
 library(rvest) 
 ```
-#### 웹에 있는 html 문서를 읽어올 때 사용하는 함수 묶음.
+#### rvests는 웹에 있는 html 문서를 읽어올 때 사용하는 함수 묶음.
 
 ## 분석 데이터1 = "연도별 정부포상 현황", 행정안전부 자료(흔히 보도자료로 나올 수 있을 만한...) 
 #### 변수가 무엇인지 탐색 (연도, 계, 훈포장 소계, 훈포장 훈장, 훈포장 포장, 표창 소계, 표창 대표, 표창 국표) 
 
 # 1. PDF -> HTML  
-## 1-1. adobe acrobat DC에서 PDF 파일 열기
-## 1-2. PDF HTML 문서로 내보내기
+#### 1-1. adobe acrobat DC에서 PDF 파일 열기
+#### 1-2. PDF HTML 문서로 내보내기
 
 # 2. R에서 html 문서 읽기  
 
@@ -41,10 +41,12 @@ prize_2018 <- read_html('prize_2018.html')
 prize_2018 <- prize_2018 %>%   
   html_table(fill = T)   
 ```
+#### *윈도우에서는 인코딩 문제가 있어 Sys.setlocale("LC_ALL","English"), Sys.setlocale("LC_ALL","Korean")을 붙여줘야 함. 
 
 ```{r}
 prize_2018 <- prize_2018[[1]]  
 ```
+#### *read_html(), html_table() 함수는 모두 데이터를 list 형식으로 저장. list는 정해진 규칙없이 데이터를 저장하는 형식. 
 
 # 3. 데이터 전처리  
 
