@@ -220,12 +220,12 @@ df_gov$대분류 <- df_gov$대분류 %>%
 df_gov$`본인과의 관계` <- df_gov$`본인과의 관계` %>% 
   str_remove_all(" ") %>% 
   str_remove_all(",")
-
-write_excel_csv(df_gov, "gov_ulsan_2019.csv")
-
-write_excel_csv(pro3_error, 'gov_ulsan_2019_error.csv')
  
 df_gov %>% 
   group_by(개별index) %>% 
   count()
 
+install.packages("remotes")
+remotes::install_github("taltal-ddj/taltal")
+library(taltal)
+highofficer  
