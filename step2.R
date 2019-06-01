@@ -83,8 +83,6 @@ ggplot(real_5_daily, aes(x = 날짜, y = 지지율, fill = 정당)) +
   geom_bar(stat = "identity") +
   theme_fivethirtyeight(base_family = "AppleGothic") 
 
-# 검증
-
 ggplot(real_5_daily1 %>% 
          filter(정당 != "격차"), aes(x = 날짜, y = 지지율, fill = 정당)) +
   geom_bar(stat = "identity", position = "dodge") +
